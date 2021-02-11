@@ -2,23 +2,15 @@
 #include <string>
 #include "student.h"
 
-const string degreeTypes[] = { "SECURITY","NETWORK","SOFTWARE" };
-
-using namespace std;
 
 /*CONSTRUCTORS*/
-Student::Student() {}  
-
-Student::Student(string ID, string fName, string lName, string email, int age, int days1, int days2, int days3, DegreeProgram deg) {
-
+Student::Student() {}
+Student::Student(string ID, string fName, string lName, string email, int age, DegreeProgram deg) {
 	studentID = ID;
 	firstName = fName;
 	lastName = lName;
 	emailAddress = email;
 	ageInYears = age;
-	daysInCourse1 = days1;
-	daysInCourse2 = days2;
-	daysInCourse3 = days3;
 	degree = deg;
 }
 
@@ -44,17 +36,17 @@ int Student::getAge() const {
 	return ageInYears;
 }
 
-int Student::getDaysInCourse1() const {
-	return daysInCourse1;
-}
-
-int Student::getDaysInCourse2() const {
-	return daysInCourse2;
-}
-
-int Student::getDaysInCourse3() const {
-	return daysInCourse3;
-}
+//int Student::getDaysInCourse1() const {
+//	return daysInCourse[0];
+//}
+//
+//int Student::getDaysInCourse2() const {
+//	return daysInCourse[1];
+//}
+//
+//int Student::getDaysInCourse3() const {
+//	return daysInCourse[2];
+//}
 
 DegreeProgram Student::getDegreeProgram() const {
 	return degree;
@@ -89,20 +81,20 @@ void Student::setAge(int age) {
 	return;
 }
 
-void Student::setDaysInCourse1(int days1) {
-	daysInCourse1 = days1;
-	return;
-}
-
-void Student::setDaysInCourse2(int days2) {
-	daysInCourse2 = days2;
-	return;
-}
-
-void Student::setDaysInCourse3(int days3) {
-	daysInCourse3 = days3;
-	return;
-}
+//void Student::setDaysInCourse1(int days1) {
+//	daysInCourse[0] = days1;
+//	return;
+//}
+//
+//void Student::setDaysInCourse2(int days2) {
+//	daysInCourse[1] = days2;
+//	return;
+//}
+//
+//void Student::setDaysInCourse3(int days3) {
+//	daysInCourse[2] = days3;
+//	return;
+//}
 
 void Student::setDegreeProgram (DegreeProgram deg) {
 	degree = deg;
@@ -112,16 +104,15 @@ void Student::setDegreeProgram (DegreeProgram deg) {
 /*****************************************************************/
 /*PRINT*/
 void Student::print() const {
-	cout << "StudentID: " << studentID << endl;
-	cout << "First Name: " << firstName << endl;
-	cout << "Last Name: " << lastName << endl;
-	cout << "Email Address: " << emailAddress << endl;
-	cout << "Age: " << ageInYears << endl;
-	cout << "Days_Course_One: " << daysInCourse1 << endl;
-	cout << "Days_Course_Two: " << daysInCourse2 << endl;
-	cout << "Days_Couurse_Three: " << daysInCourse3 << endl;
-	cout << "Degree Program: " << degreeTypes[(int)degree] << endl << endl; // casting int to string
+	string courseTitle = "Scripting and Programming, C867";
+	string programmingLanguage = "C++";
+	int wguStudentID = 652365412;
+	string studentName = "Ozobia Nwadibia";
 
+	cout << "Course Title: \t\t" << courseTitle << endl;
+	cout << "Programming Language: \t" << programmingLanguage << endl;
+	cout << "Student ID: \t\t" << wguStudentID << endl;
+	cout << "Name: \t\t\t" << studentName << endl;
 }
 
 
