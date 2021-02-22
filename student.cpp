@@ -1,21 +1,21 @@
-#include <iostream>
-#include <string>
+
 #include "student.h"
 
 
 /*CONSTRUCTORS*/
-Student::Student() {}
-Student::Student(string ID, string fName, string lName, string email, int age, DegreeProgram deg) {
+Student::Student(): ageInYears(0), daysInCourse(nullptr), degree(){}
+
+Student::Student(string &ID, string &fName, string &lName, string &email, int age, int *daysIC, DegreeProgram deg) {
 	studentID = ID;
 	firstName = fName;
 	lastName = lName;
 	emailAddress = email;
 	ageInYears = age;
+	daysInCourse = daysIC;
 	degree = deg;
 }
 
-
-// getters
+// GETTERS
 
 string Student::getStudentID() const {
 	return studentID;
@@ -36,41 +36,35 @@ int Student::getAge() const {
 	return ageInYears;
 }
 
-//int Student::getDaysInCourse1() const {
-//	return daysInCourse[0];
-//}
-//
-//int Student::getDaysInCourse2() const {
-//	return daysInCourse[1];
-//}
-//
-//int Student::getDaysInCourse3() const {
-//	return daysInCourse[2];
-//}
+
+int *Student::getDaysInCourse() const {
+	return daysInCourse;
+}
 
 DegreeProgram Student::getDegreeProgram() const {
 	return degree;
 }
 /****************************************************************/
-// setters
+// SETTERS
  
-void Student::setStudentID(string ID) {
+void Student::setStudentID(string& ID) {
 	studentID = ID;
 	return;
 }
 
-void Student::setFirstName(string fName) {
+
+void Student::setFirstName(string& fName) {
 	firstName = fName;
 	return;
 }
 
-void Student::setLastName(string lName) {
+void Student::setLastName(string& lName) {
 	lastName = lName;
 	return;
 }
 
 
-void Student::setEmailAddress(string email) {
+void Student::setEmailAddress(string& email) {
 	emailAddress = email;
 	return;
 }
@@ -81,20 +75,10 @@ void Student::setAge(int age) {
 	return;
 }
 
-//void Student::setDaysInCourse1(int days1) {
-//	daysInCourse[0] = days1;
-//	return;
-//}
-//
-//void Student::setDaysInCourse2(int days2) {
-//	daysInCourse[1] = days2;
-//	return;
-//}
-//
-//void Student::setDaysInCourse3(int days3) {
-//	daysInCourse[2] = days3;
-//	return;
-//}
+void Student::setDaysInCourse(int *days_in_course) {
+	daysInCourse = days_in_course;
+	return;
+}
 
 void Student::setDegreeProgram (DegreeProgram deg) {
 	degree = deg;
@@ -103,16 +87,16 @@ void Student::setDegreeProgram (DegreeProgram deg) {
 
 /*****************************************************************/
 /*PRINT*/
-void Student::print() const {
-	string courseTitle = "Scripting and Programming, C867";
-	string programmingLanguage = "C++";
-	int wguStudentID = 652365412;
-	string studentName = "Ozobia Nwadibia";
+void Student::print(){
+	const string courseTitle = "C867 - Scripting and Programming: Applications";
+	const string programmingLanguage = "C++";
+	const string wguStudentID = "000341262";
+	const string studentName = "Ozobia Nwadibia";
 
-	cout << "Course Title: \t\t" << courseTitle << endl;
+	cout << setfill(' ') << setw(23) << "Course Title: \t" << courseTitle << endl;
 	cout << "Programming Language: \t" << programmingLanguage << endl;
-	cout << "Student ID: \t\t" << wguStudentID << endl;
-	cout << "Name: \t\t\t" << studentName << endl;
+	cout << setfill(' ') << setw(23) << "Student ID: \t" << wguStudentID << endl;
+	cout << setfill(' ') << setw(23) << "Name: \t" << studentName << endl << endl;
 }
 
 

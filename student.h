@@ -1,63 +1,54 @@
 #pragma once
 
-#ifndef STUDENT_H_
-#define STUDENT_H_
+#ifndef STUDENT_H
+#define STUDENT_H
 
-#include <string>
 #include "degree.h"
 
-using std::cout;
-using std::string;
-using std::endl;
+#include <iostream>
+#include <string>
+#include <ios>
+#include <iomanip>
 
+using namespace std;
 
 class Student
 {
 private:
-    string studentID;
-    string firstName;
-    string lastName;
-    string emailAddress;
-    int ageInYears;
-   /* int daysInCourse[3];*/   
-    DegreeProgram degree;
+	string studentID;
+	string firstName;
+	string lastName;
+	string emailAddress;
+	int ageInYears;
+	int *daysInCourse; 
+	DegreeProgram degree;
 
+	// constructors
 public:
-    // constructors
-    Student();
-    Student(string, string, string, string, int, DegreeProgram);
+	Student();
+	Student(string&, string&, string&, string&, int, int*, DegreeProgram);
 
-    // getter methods
+	// getter methods
+	string getStudentID() const;
+	string getFirstName() const;
+	string getLastName() const;
+	string getEmailAddress() const;
+	int getAge() const;
+	int *getDaysInCourse() const;    
+	DegreeProgram getDegreeProgram() const;
 
-    string getStudentID() const;
-    string getFirstName() const;
-    string getLastName() const;
-    string getEmailAddress() const;
-    int getAge() const;
-    
-   /* int getDaysInCourse1() const;  
-    int getDaysInCourse2() const;
-    int getDaysInCourse3() const;*/
+	// accessor methods
+	void setStudentID(string& studentID);
+	void setFirstName(string& firstName);
+	void setLastName(string& lastName);
+	void setEmailAddress(string& emailAddress);
+	void setAge(int ageInYears);
+	void setDaysInCourse(int *days_in_course);
+	void setDegreeProgram(DegreeProgram degree);
 
-    DegreeProgram getDegreeProgram() const;
-    
-    // accessor methods
-
-    void setStudentID(string ID);
-    void setFirstName(string fName);
-    void setLastName(string lName);
-    void setEmailAddress(string email);
-    void setAge(int age);
-
-    /*void setDaysInCourse1(int days1);
-    void setDaysInCourse2(int days2);
-    void setDaysInCourse3(int days3);*/
-
-    void setDegreeProgram(DegreeProgram deg);
-
-
-    // prints specific student data
-    void print() const; 
+	// prints task builder info
+public:
+     void print();
 };
 
 #endif

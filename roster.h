@@ -1,17 +1,17 @@
 #pragma once
 
 
-#ifndef ROSTER_H_
-#define ROSTER_H_
+#ifndef ROSTER_H
+#define ROSTER_H
+
+#include "degree.h"
 
 #include <iostream>
 #include <string>
-#include "degree.h"
-#include "student.h"
+#include <ios>
+#include <iomanip>
 
-using std::cout;
-using std::string;
-using std::endl;
+using namespace std;
 
 class Roster
 {
