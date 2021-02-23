@@ -3,7 +3,7 @@
 
 
 /*CONSTRUCTORS*/
-Student::Student(): ageInYears(0), daysInCourse(nullptr), degree(){}
+Student::Student(){}
 
 Student::Student(string &ID, string &fName, string &lName, string &email, int age, int *daysIC, DegreeProgram deg) {
 	studentID = ID;

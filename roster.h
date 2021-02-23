@@ -25,6 +25,8 @@ private:
     int daysInCourse2;
     int daysInCourse3;
     DegreeProgram degree;
+
+    
    
 public:
     void add(string, string, string, string, int, int, int, int, DegreeProgram);
@@ -33,7 +35,6 @@ public:
     void printAverageDaysInCourse(string);
     void printInvalidEmails();
     void printByDegreeProgram(DegreeProgram degreeProgram);
-
 };
 
 #endif

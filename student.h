@@ -9,6 +9,9 @@
 #include <string>
 #include <ios>
 #include <iomanip>
+#include <cstdlib>  // atoi fxn
+#include <typeinfo> // type info
+
 
 using namespace std;
 
