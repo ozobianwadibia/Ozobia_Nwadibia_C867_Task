@@ -5,6 +5,7 @@
 #define ROSTER_H
 
 #include "degree.h"
+#include "student.h"
 
 #include <iostream>
 #include <string>
@@ -16,26 +17,27 @@ using namespace std;
 class Roster
 {
 private:
-    string studentID;
-    string firstName;
-    string lastName;
-    string emailAddress;
-    int ageInYears;
-    int daysInCourse1;
-    int daysInCourse2;
-    int daysInCourse3;
-    DegreeProgram degree;
-
     
-   
 public:
+    // constructor
+    Roster();
+
+    // destructor
+    ~Roster();
+    string* parse(string row);
     void add(string, string, string, string, int, int, int, int, DegreeProgram);
-    void remove(string);
     void printAll();
-    void printAverageDaysInCourse(string);
     void printInvalidEmails();
+    void printAverageDaysInCourse(string);
     void printByDegreeProgram(DegreeProgram degreeProgram);
+    void remove(string);
+
+    // helper functions
+    DegreeProgram stringsToEnum(const string& degStrings);
+    string convertEnumToString(DegreeProgram degree);
+
 };
 
 #endif
+
 

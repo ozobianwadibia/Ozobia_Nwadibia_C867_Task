@@ -5,15 +5,24 @@
 /*CONSTRUCTORS*/
 Student::Student(){}
 
-Student::Student(string &ID, string &fName, string &lName, string &email, int age, int *daysIC, DegreeProgram deg) {
+Student::Student(string ID, string fName, string lName, string email, int age, int *daysIC, DegreeProgram deg) {
+
 	studentID = ID;
 	firstName = fName;
 	lastName = lName;
 	emailAddress = email;
 	ageInYears = age;
-	daysInCourse = daysIC;
+	// allocating memory to the dynamic array
+	daysIC = new int[3];
+	daysInCourse[0] = daysIC[0];
+	daysInCourse[1] = daysIC[1];
+	daysInCourse[2] = daysIC[2];
+
 	degree = deg;
 }
+
+// destructor
+Student::~Student() {}
 
 // GETTERS
 
@@ -37,9 +46,10 @@ int Student::getAge() const {
 }
 
 
-int *Student::getDaysInCourse() const {
-	return daysInCourse;
+int *Student::getDaysInCourse() {
+		return daysInCourse;
 }
+
 
 DegreeProgram Student::getDegreeProgram() const {
 	return degree;
@@ -47,24 +57,24 @@ DegreeProgram Student::getDegreeProgram() const {
 /****************************************************************/
 // SETTERS
  
-void Student::setStudentID(string& ID) {
+void Student::setStudentID(string ID) {
 	studentID = ID;
 	return;
 }
 
 
-void Student::setFirstName(string& fName) {
+void Student::setFirstName(string fName) {
 	firstName = fName;
 	return;
 }
 
-void Student::setLastName(string& lName) {
+void Student::setLastName(string lName) {
 	lastName = lName;
 	return;
 }
 
 
-void Student::setEmailAddress(string& email) {
+void Student::setEmailAddress(string email) {
 	emailAddress = email;
 	return;
 }
@@ -86,8 +96,8 @@ void Student::setDegreeProgram (DegreeProgram deg) {
 }
 
 /*****************************************************************/
-/*PRINT*/
-void Student::print(){
+//print personal info
+void Student::ozobiaPrint(){
 	const string courseTitle = "C867 - Scripting and Programming: Applications";
 	const string programmingLanguage = "C++";
 	const string wguStudentID = "000341262";
@@ -98,5 +108,6 @@ void Student::print(){
 	cout << setfill(' ') << setw(23) << "Student ID: \t" << wguStudentID << endl;
 	cout << setfill(' ') << setw(23) << "Name: \t" << studentName << endl << endl;
 }
+
 
 

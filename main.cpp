@@ -3,49 +3,14 @@
 #include "roster.h"
 
 
-
-// casting 
- //degreeTypes[(int)ocn.getDegreeProgram()]
-const string degreeTypes[3] = {"SECURITY","NETWORK","SOFTWARE"};
-
-// enums to strings
-string convertEnumToString(DegreeProgram degree) {
-    switch (degree)
-    {
-    case SECURITY:
-        return "SECURITY";
-        break;
-    case NETWORK:
-        return "NETWORK";
-        break;
-    case SOFTWARE:
-        return "SOFTWARE";
-        break;
-    default:
-        return "Invalid degree!";
-    }
-}
-
-DegreeProgram stringsToEnum(const string& degStrings)
-{
-    if (degStrings == "SECURITY")
-        return SECURITY;
-    else if (degStrings == "NETWORK")
-        return NETWORK;
-    else if (degStrings == "SOFTWARE")
-        return SOFTWARE;
-}
 // main program
 int main()
 {
-   // Student info
+   // C867 student object
     Student ocn;
-    ocn.print();
-    cout << setfill('-') << setw(70) << "" << endl;
+    ocn.ozobiaPrint();
+    cout << setfill('-') << setw(60) << "" << endl;
 
-    //----------------------------------------------------------------//
-    // the student data to be manipulated
-	
     const string studentData[] =
     { "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
       "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
@@ -56,108 +21,64 @@ int main()
     // array size - (5)
     const int studentDataSize = sizeof(studentData) / sizeof(studentData[0]); 
 
-    for (int i = 0; i < studentDataSize; i++) {
-        cout << studentData[i] << endl;
-    }
-   
-    //cout << *(classRosterArray + 5) << endl;
-    //delete[]classRosterArray; (when done with me)
-   
-    cout << setfill('-') << setw(70) << "" << endl;
-
-    struct Student
-    {
-        string studentID;
-        string firstName;
-        string lastName;
-        string emailAddress;
-        int ageInYears;
-        int daysInCourse1;
-        int daysInCourse2;
-        int daysInCourse3;
-        DegreeProgram degree;
-    };
-
-    // student objects
-    Student a1;
-    Student a2;
-    Student a3;
-    Student a4;
-    Student a5;
-    //Student a6("A6", "Dorian", "Bools", "KB@yahoo.com", 50, 21,54,56, NETWORK);
-
-    //pointer string array needed here
-    Student classRosterArray[5];
+    cout << setfill('-') << setw(60) << "" << endl;
     
-    
-
-
-    // for the 'add' function in Roster class
-    string delimiter = ",";
-    for (int i = 0; i < 5; i++)
-    {
-        size_t rightSide = studentData[i].find(delimiter);
-        classRosterArray[i].studentID = studentData[i].substr(0, rightSide);
-
-        size_t leftSide = rightSide + 1;
-        rightSide = studentData[i].find(delimiter, leftSide);
-        classRosterArray[i].firstName = studentData[i].substr(leftSide, rightSide - leftSide);
-
-        leftSide = rightSide + 1;
-        rightSide = studentData[i].find(delimiter, leftSide);
-        classRosterArray[i].lastName = studentData[i].substr(leftSide, rightSide - leftSide);
-
-        leftSide = rightSide + 1;
-        rightSide = studentData[i].find(delimiter, leftSide);
-        classRosterArray[i].emailAddress = studentData[i].substr(leftSide, rightSide - leftSide);
-
-        leftSide = rightSide + 1;
-        rightSide = studentData[i].find(delimiter, leftSide);
-        classRosterArray[i].ageInYears = atoi(studentData[i].substr(leftSide, rightSide - leftSide).c_str());
-
-        leftSide = rightSide + 1;
-        rightSide = studentData[i].find(delimiter, leftSide);
-        classRosterArray[i].daysInCourse1 = atoi(studentData[i].substr(leftSide, rightSide - leftSide).c_str());
-
-        leftSide = rightSide + 1;
-        rightSide = studentData[i].find(delimiter, leftSide);
-        classRosterArray[i].daysInCourse2 = atoi(studentData[i].substr(leftSide, rightSide - leftSide).c_str());
-
-        leftSide = rightSide + 1;
-        rightSide = studentData[i].find(delimiter, leftSide);
-        classRosterArray[i].daysInCourse3 = atoi(studentData[i].substr(leftSide, rightSide - leftSide).c_str());
-
-        leftSide = rightSide + 1;
-        rightSide = studentData[i].find(delimiter, leftSide);
-        classRosterArray[i].degree = stringsToEnum(studentData[i].substr(leftSide, rightSide - leftSide));
-    }
-
-    // for the display / printall function
-    for (int i = 0; i < 5; i++)
-    {
-        cout << classRosterArray[i].studentID << endl;
-        cout << classRosterArray[i].firstName << endl;
-        cout << classRosterArray[i].lastName << endl;
-        cout << classRosterArray[i].emailAddress << endl;
-        cout << classRosterArray[i].ageInYears << endl;
-        cout << classRosterArray[i].daysInCourse1 << endl;
-        cout << classRosterArray[i].daysInCourse2 << endl;
-        cout << classRosterArray[i].daysInCourse3 << endl;
-        cout << convertEnumToString(classRosterArray[i].degree) << endl;
-        cout << endl;
-    }
-    
- 
     // instance of roster class
     Roster classRoster;
+  
+    for (int i = 0; i < 9; i++) {
+        cout << (classRoster.parse(studentData[0])[i]) << endl;
+    }
+    cout << endl;
+
+ 
+    for (int i = 0; i < 9; i++)
+    {
+        cout << (classRoster.parse(studentData[1])[i]) << endl;
+    }
+    cout << endl;
+    /*cout << typeid(stoi(classRoster.parse(studentData[2])[1])).name() << endl;
+    cout << typeid(classRoster.stringsToEnum(classRoster.parse(studentData[2])[8])).name();*/
+
+   
+    Student classRosterArray[5];
+    //classRosterArray = new Student[5];
+
+   /* for (int i = 0; i < 5; i++)
+    {
+        classRosterArray[i] = classRoster.add(classRoster.parse(studentData[i])[0],
+            classRoster.parse(studentData[i])[1],
+            classRoster.parse(studentData[i])[2],
+            classRoster.parse(studentData[i])[3],
+            stoi(classRoster.parse(studentData[i])[4]),
+            stoi(classRoster.parse(studentData[i])[5]),
+            stoi(classRoster.parse(studentData[i])[6]),
+            stoi(classRoster.parse(studentData[i])[7]),
+            classRoster.stringsToEnum(classRoster.parse(studentData[i])[8]));
+    }*/
+
+ 
+  
+        
+        
+        /*classRoster.add(classRoster.parse(studentData[0])[0],
+        classRoster.parse(studentData[0])[1],
+        classRoster.parse(studentData[0])[2],
+        classRoster.parse(studentData[0])[3],
+        stoi(classRoster.parse(studentData[0])[4]),
+        stoi(classRoster.parse(studentData[0])[5]),
+        stoi(classRoster.parse(studentData[0])[6]),
+        stoi(classRoster.parse(studentData[0])[7]),
+        classRoster.stringsToEnum(classRoster.parse(studentData[0])[8]));*/
+
+
+
+
     
 
-    // test run: add method
-    classRoster.add("A6", "Jamie", "Sanders", "JMS36@gmail.com", 20, 30, 35, 40, NETWORK);
-    classRoster.add("A7", "Janet", "Warthog", "JW96@live.com", 52, 23, 10, 15, SOFTWARE);
-
     
-
+    //------------------------------------------------------------------------------------------//
+    //------------------------------------------------------------------------------------------//
     // prints all the students
     classRoster.printAll();
      
