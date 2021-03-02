@@ -1,8 +1,8 @@
 
 #include "student.h"
+#include "roster.h"
 
-
-/*CONSTRUCTORS*/
+//----------CONSTRUCTORS----------//
 Student::Student(){}
 
 Student::Student(string ID, string fName, string lName, string email, int age, int *daysIC, DegreeProgram deg) {
@@ -12,19 +12,14 @@ Student::Student(string ID, string fName, string lName, string email, int age, i
 	lastName = lName;
 	emailAddress = email;
 	ageInYears = age;
-	// allocating memory to the dynamic array
-	daysIC = new int[3];
-	daysInCourse[0] = daysIC[0];
-	daysInCourse[1] = daysIC[1];
-	daysInCourse[2] = daysIC[2];
-
+	daysInCourse = daysIC;
 	degree = deg;
 }
 
-// destructor
+//----------DESTRUCTOR----------//
 Student::~Student() {}
 
-// GETTERS
+//----------GETTERS----------//
 
 string Student::getStudentID() const {
 	return studentID;
@@ -54,8 +49,8 @@ int *Student::getDaysInCourse() {
 DegreeProgram Student::getDegreeProgram() const {
 	return degree;
 }
-/****************************************************************/
-// SETTERS
+
+//----------SETTERS----------//
  
 void Student::setStudentID(string ID) {
 	studentID = ID;
@@ -95,19 +90,46 @@ void Student::setDegreeProgram (DegreeProgram deg) {
 	return;
 }
 
-/*****************************************************************/
-//print personal info
+
+//----------PRINT STUDENT INFO----------//
 void Student::ozobiaPrint(){
 	const string courseTitle = "C867 - Scripting and Programming: Applications";
 	const string programmingLanguage = "C++";
 	const string wguStudentID = "000341262";
 	const string studentName = "Ozobia Nwadibia";
-
+	cout << endl;
 	cout << setfill(' ') << setw(23) << "Course Title: \t" << courseTitle << endl;
 	cout << "Programming Language: \t" << programmingLanguage << endl;
 	cout << setfill(' ') << setw(23) << "Student ID: \t" << wguStudentID << endl;
 	cout << setfill(' ') << setw(23) << "Name: \t" << studentName << endl << endl;
 }
 
+//enum to strings
+string Student::convertEnumToString(DegreeProgram degree)
+{
+	switch (degree)
+	{
+	case SECURITY:
+		return "SECURITY";
+		break;
+	case NETWORK:
+		return "NETWORK";
+		break;
+	case SOFTWARE:
+		return "SOFTWARE";
+		break;
+	default:
+		return "Invalid degree!";
+	}
+}
 
+void Student::print()
+{
+	cout << studentID << "\t" <<
+		"First Name : " << firstName << "\t" <<
+		"Last Name : " << lastName << "\t" <<
+		"Age : " << ageInYears << "\t" <<
+		"Days In Course : {" << daysInCourse[0] << "," << daysInCourse[1] << "," << daysInCourse[2] << "}" << "\t" <<
+		"Degree Program : " << convertEnumToString(degree) << endl;
+}
 

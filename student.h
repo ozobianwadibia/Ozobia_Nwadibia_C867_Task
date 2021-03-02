@@ -56,6 +56,8 @@ public:
 	// prints task builder info
 public:
      void ozobiaPrint();
+	 void print();
+	 string convertEnumToString(DegreeProgram degree);
 };
 
 #endif

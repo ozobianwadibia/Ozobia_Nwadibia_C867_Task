@@ -25,7 +25,7 @@ public:
     // destructor
     ~Roster();
     string* parse(string row);
-    void add(string, string, string, string, int, int, int, int, DegreeProgram);
+    Student add(string, string, string, string, int, int, int, int, DegreeProgram);
     void printAll();
     void printInvalidEmails();
     void printAverageDaysInCourse(string);
@@ -34,8 +34,6 @@ public:
 
     // helper functions
     DegreeProgram stringsToEnum(const string& degStrings);
-    string convertEnumToString(DegreeProgram degree);
-
 };
 
 #endif

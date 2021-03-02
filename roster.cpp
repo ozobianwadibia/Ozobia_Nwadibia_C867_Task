@@ -2,42 +2,6 @@
 #include "roster.h"
 #include "student.h"
 
-Student::Student(string ID, string fName, string lName, string email, int age, int* daysIC, DegreeProgram deg) {
-
-    studentID = ID;
-    firstName = fName;
-    lastName = lName;
-    emailAddress = email;
-    ageInYears = age;
-    // allocating memory to the dynamic array
-    daysIC = new int[3];
-    daysInCourse[0] = daysIC[0];
-    daysInCourse[1] = daysIC[1];
-    daysInCourse[2] = daysIC[2];
-
-    degree = deg;
-}
-
-
-
-// enums to strings
-string Roster::convertEnumToString(DegreeProgram degree) {
-    switch (degree)
-    {
-    case SECURITY:
-        return "SECURITY";
-        break;
-    case NETWORK:
-        return "NETWORK";
-        break;
-    case SOFTWARE:
-        return "SOFTWARE";
-        break;
-    default:
-        return "Invalid degree!";
-    }
-}
-
 
 DegreeProgram Roster:: stringsToEnum(const string& degStrings)
 {
@@ -50,9 +14,7 @@ DegreeProgram Roster:: stringsToEnum(const string& degStrings)
 }
 
 
-//Student* classRosterArray[5];
-//classRosterArray[0] = Student stu1;
-//-------------------------------------------------------------------//
+
 // constructor
 Roster::Roster(){}
 
@@ -77,28 +39,15 @@ string* Roster::parse(string row) {
     return tempArray;
 }
 
- Roster::add(string ID, string fName, string lName, string email, int age, int days1, int days2, int days3, DegreeProgram deg)
-{
-
-    string studentID = ID;
-    string firstName = fName;
-    string lastName = lName;
-    string emailAddress = email;
-    int ageInYears = age;
+ Student Roster::add(string ID, string fName, string lName, string email, int age, int days1, int days2, int days3, DegreeProgram deg)
+ {
     int *daysIC = new int[3];
     daysIC[0] = days1;
     daysIC[1] = days2;
     daysIC[2] = days3;
-
-    DegreeProgram degree = deg;
-
-    return;
+    
+    return Student(ID, fName, lName, email, age, daysIC, deg);
 }
-
-
-	
-
-
 
 void Roster::remove(string ID)
 {
@@ -106,27 +55,16 @@ void Roster::remove(string ID)
 	}*/
 	
 }
+
+
 // to work with the method below!!!
 void Roster::printAll() {
-   /* for (int i = 0; i < 1; i++)
-    {
-        cout << classRosterArray[i].studentID << endl;
-        cout << classRosterArray[i].firstName << endl;
-        cout << classRosterArray[i].lastName << endl;
-        cout << classRosterArray[i].emailAddress << endl;
-        cout << classRosterArray[i].ageInYears << endl;
-        cout << classRosterArray[i].daysInCourse1 << endl;
-        cout << classRosterArray[i].daysInCourse2 << endl;
-        cout << classRosterArray[i].daysInCourse3 << endl;
-        cout << convertEnumToString(classRosterArray[i].degree) << endl;
-        cout << endl;
+   
+    /*for (int i = 0; i < 5; i++) {
+        classRosterArray[i].print();
     }*/
 }
 
-// print method to work with printAll() method
-//void Roster::print() {
-//	cout << studentID << "\t" << "First Name: " << firstName << "\t" << "Last Name: " << lastName << "\t" << "Age: " << ageInYears << "\t" << "daysInCourse: " << daysInCourse << "\t" << "Degree Program: " << degree << endl;
-//}
 
 void Roster::printAverageDaysInCourse(string ID)
 {
