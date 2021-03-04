@@ -14,17 +14,26 @@
 
 using namespace std;
 
+
+
 class Roster
 {
 private:
-    
+
 public:
     // constructor
     Roster();
 
     // destructor
     ~Roster();
-    string* parse(string row);
+
+ 
+    // the student objects
+   // the static member is available to all objects!
+    Student *classRosterArray[5];
+
+    // main functions
+    //string* parse(string row);
     Student add(string, string, string, string, int, int, int, int, DegreeProgram);
     void printAll();
     void printInvalidEmails();
@@ -33,7 +42,7 @@ public:
     void remove(string);
 
     // helper functions
-    DegreeProgram stringsToEnum(const string& degStrings);
+    //DegreeProgram stringsToEnum(const string& degStrings);
 };
 
 #endif

@@ -27,11 +27,12 @@ private:
 	int *daysInCourse;
 	DegreeProgram degree;
 
-	// constructors
+	
 public:
+	// constructors
 	Student(); 
 	Student(string, string, string, string, int, int*, DegreeProgram);
-
+	
 	// destructor
 	~Student();
 
@@ -53,10 +54,10 @@ public:
 	void setDaysInCourse(int *days_in_course);
 	void setDegreeProgram(DegreeProgram degree);
 
-	// prints task builder info
 public:
+	void print();
+	// helper functions
      void ozobiaPrint();
-	 void print();
 	 string convertEnumToString(DegreeProgram degree);
 };
 

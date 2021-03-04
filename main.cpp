@@ -1,6 +1,35 @@
 
-#include "student.h"
+
 #include "roster.h"
+
+
+DegreeProgram stringsToEnum(const string& degStrings)
+{
+    if (degStrings == "SECURITY")
+        return SECURITY;
+    else if (degStrings == "NETWORK")
+        return NETWORK;
+    else if (degStrings == "SOFTWARE")
+        return SOFTWARE;
+}
+
+
+string* parse(string row) {
+    const int ROW_SIZE = 9;
+    string* tempArray = new string[ROW_SIZE];
+    int i = 0;
+
+    stringstream rowStream(row); //create string stream from the string
+    while (rowStream.good())
+    {
+        string substr;
+        getline(rowStream, substr, ','); //get first string delimited by comma
+        tempArray[i] = substr;
+        i++;
+    }
+
+    return tempArray;
+}
 
 
 // main program
@@ -9,7 +38,7 @@ int main()
    // C867 student object
     Student ocn;
     ocn.ozobiaPrint();
-    cout << setfill('-') << setw(60) << "" << endl;
+    cout << setfill('-') << setw(75) << "" << endl;
 
    const string studentData[] =
     { "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
@@ -21,51 +50,40 @@ int main()
     // array size - (5)
     const int studentDataSize = sizeof(studentData) / sizeof(studentData[0]); 
 
-    cout << setfill('-') << setw(60) << "" << endl;
-    
     // instance of roster class
     Roster classRoster;
-  
-    for (int i = 0; i < 9; i++) {
-        cout << (classRoster.parse(studentData[0])[i]) << endl;
-    }
-    cout << endl;
 
-
-   
-    // the student objects
-    Student *classRosterArray;
-    classRosterArray = new Student[5];
-        
-    // populating the array
+    // adding studentData to classRoster &
+    // populating the classRosterArray with student objects
     for (int i = 0; i < 5; i++)
     {
-        classRosterArray[i] = (classRoster.add(classRoster.parse(studentData[i])[0],
-            classRoster.parse(studentData[i])[1],
-            classRoster.parse(studentData[i])[2],
-            classRoster.parse(studentData[i])[3],
-            stoi(classRoster.parse(studentData[i])[4]),
-            stoi(classRoster.parse(studentData[i])[5]),
-            stoi(classRoster.parse(studentData[i])[6]),
-            stoi(classRoster.parse(studentData[i])[7]),
-            classRoster.stringsToEnum(classRoster.parse(studentData[i])[8])));
+        classRoster.classRosterArray[i] = new Student(classRoster.add(
+            parse(studentData[i])[0],
+            parse(studentData[i])[1],
+            parse(studentData[i])[2],
+            parse(studentData[i])[3],
+            stoi(parse(studentData[i])[4]),
+            stoi(parse(studentData[i])[5]),
+            stoi(parse(studentData[i])[6]),
+            stoi(parse(studentData[i])[7]),
+            stringsToEnum(parse(studentData[i])[8])));
     
         switch (i)
         {
         case 0:
-            cout << "First student has been added..." << endl;
+            cout << "1st student added..." << endl;
             break;
         case 1:
-            cout << "Second student has been added..." << endl;
+            cout << "2nd student added..." << endl;
             break;
         case 2:
-            cout << "Third student has been added..." << endl;
+            cout << "3rd student added..." << endl;
             break;
         case 3:
-            cout << "Fourth student has been added..." << endl;
+            cout << "4th student added..." << endl;
             break;
         case 4:
-            cout << "Fifth student has been added..." << endl;
+            cout << "5th student added..." << endl;
             break;
         default:
             cout << "Invalid Student!" << endl;
@@ -74,11 +92,14 @@ int main()
     }
     cout << endl;
     cout << "All the students in the array:" << endl;
-    for (int i = 0; i < 5; i++) {
-        classRosterArray[i].print();
-    }
+   
 
-    //classRosterArray[2].print();
+
+   /* for (int i = 0; i < 5; i++) {
+        classRoster.classRosterArray[i]->print();
+    }*/
+
+     
     //--------------------------------------------------------------------------------//
     
     // prints all the students
@@ -89,7 +110,7 @@ int main()
     classRoster.printAverageDaysInCourse("student id");
     classRoster.printByDegreeProgram(SOFTWARE);
     classRoster.remove("A3");
-    classRoster.printAll();
+    //classRoster.printAll();
     classRoster.remove("A3"); // student was not found!!!
 
     return 0;
