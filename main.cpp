@@ -93,22 +93,16 @@ int main()
     cout << endl;
     cout << "All the students in the array:" << endl;
    
-
-
-   /* for (int i = 0; i < 5; i++) {
-        classRoster.classRosterArray[i]->print();
-    }*/
-
-     
     //--------------------------------------------------------------------------------//
     
     // prints all the students
     classRoster.printAll();
-     
+    // prints invalid emails
     classRoster.printInvalidEmails();
-    //loop through classRosterArray and for each element:
-    classRoster.printAverageDaysInCourse("student id");
-    classRoster.printByDegreeProgram(SOFTWARE);
+    // prints average number of days for specified student
+    classRoster.printAverageDaysInCourse("A5");
+    // prints degree by program
+    classRoster.printByDegreeProgram(NETWORK);
     classRoster.remove("A3");
     //classRoster.printAll();
     classRoster.remove("A3"); // student was not found!!!

@@ -3,6 +3,19 @@
 #include "student.h"
 
 
+string enumToDegreeString(DegreeProgram degreeProgram) {
+    switch (degreeProgram) {
+    case 0:
+        return "SECURITY";
+    case 1:
+        return "NETWORK";
+    case 2:
+        return "SOFTWARE";
+    default:
+        return "Invalid Degree Program!!!";
+    }
+}
+
 // constructor
 Roster::Roster() {}
 
@@ -72,7 +85,16 @@ void Roster::printAll() {
 
 void Roster::printAverageDaysInCourse(string ID)
 {
-
+    int average = 0;
+    int divisor = 3;
+    
+    for (int i = 0; i < 5; i++) {
+        if (classRosterArray[i]->getStudentID() == ID) {
+            average += (classRosterArray[i]->getDaysInCourse()[0] + classRosterArray[i]->getDaysInCourse()[1] + classRosterArray[i]->getDaysInCourse()[2]) / divisor;
+        }
+    }
+    // TODO: fix the output
+    cout << "The average number of days for student "<< ID << " is: " << average << endl;
 }
 
 
@@ -92,6 +114,11 @@ void Roster::printInvalidEmails() {
 
 void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
 {
-
+    cout << "Student(s) who are in this degree program : "<< enumToDegreeString(degreeProgram) << ", are printed below: " << endl;
+    for (int i = 0; i < 5; i++) {
+        if (classRosterArray[i]->getDegreeProgram() == degreeProgram) {
+            classRosterArray[i]->print();
+        }
+    }
 }
 
