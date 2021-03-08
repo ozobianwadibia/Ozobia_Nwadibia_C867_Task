@@ -1,8 +1,7 @@
 
-
 #include "roster.h"
 
-
+// helper method that converts strings to enum
 DegreeProgram stringsToEnum(const string& degStrings)
 {
     if (degStrings == "SECURITY")
@@ -13,17 +12,17 @@ DegreeProgram stringsToEnum(const string& degStrings)
         return SOFTWARE;
 }
 
-
+// helper method that parses strings
 string* parse(string row) {
     const int ROW_SIZE = 9;
     string* tempArray = new string[ROW_SIZE];
     int i = 0;
 
-    stringstream rowStream(row); //create string stream from the string
+    stringstream rowStream(row); 
     while (rowStream.good())
     {
         string substr;
-        getline(rowStream, substr, ','); //get first string delimited by comma
+        getline(rowStream, substr, ','); 
         tempArray[i] = substr;
         i++;
     }
@@ -38,8 +37,9 @@ int main()
    // C867 student object
     Student ocn;
     ocn.ozobiaPrint();
-    cout << setfill('-') << setw(75) << "" << endl;
+    cout << setfill('-') << setw(100) << "" << endl << endl;
 
+    // the student data
    const string studentData[] =
     { "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
       "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
@@ -47,7 +47,7 @@ int main()
       "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
       "A5,Ozobia,Nwadibia,hero_47@live.com,41,29,30,25,SOFTWARE" };
 
-    // array size - (5)
+    // size of the studentData array
     const int studentDataSize = sizeof(studentData) / sizeof(studentData[0]); 
 
     // instance of roster class
@@ -92,29 +92,35 @@ int main()
     }
     cout << endl;
     cout << "All the students in the array:" << endl;
+    cout << setfill('-') << setw(100) << "" << endl<< endl;
 
    
     //--------------------------------------------------------------------------------//
     
     // prints all the students
     classRoster.printAll();
+    //cout << setfill('-') << setw(100) << "" << endl;
     cout << endl;
     // prints invalid emails
     classRoster.printInvalidEmails();
+    //cout << setfill('-') << setw(100) << "" << endl;
+    cout << endl;
     // prints average number of days for specified student
     classRoster.printAverageDaysInCourse("A4");
+    //cout << setfill('-') << setw(100) << "" << endl;
     cout << endl;
     // prints degree by program
-    classRoster.printByDegreeProgram(SOFTWARE);
+    classRoster.printByDegreeProgram(SECURITY);
+    //cout << setfill('-') << setw(100) << "" << endl;
     cout << endl;
     // removes specified student from the list
     classRoster.remove("A2");
-    
-    //classRoster.printAll();
     cout << endl;
-
-
-    //classRoster.remove("A3"); 
+    cout << "The remaining students: " << endl;
+    cout << setfill('-') << setw(100) << "" << endl;
+    classRoster.printAll();
+    cout << endl;
+    classRoster.remove("A2"); 
 
     return 0;
 }

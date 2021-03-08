@@ -23,21 +23,16 @@ public:
     ~Roster();
 
  
-    // the student objects
-   // the static member is available to all objects!
+   // the student object array
     Student *classRosterArray[5];
 
     // main functions
-    //string* parse(string row);
     Student add(string, string, string, string, int, int, int, int, DegreeProgram);
     void printAll();
     void printInvalidEmails();
     void printAverageDaysInCourse(string);
     void printByDegreeProgram(DegreeProgram degreeProgram);
     void remove(string);
-
-    // helper functions
-    //DegreeProgram stringsToEnum(const string& degStrings);
 };
 
 #endif

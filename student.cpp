@@ -104,7 +104,7 @@ void Student::ozobiaPrint(){
 	cout << setfill(' ') << setw(23) << "Name: \t" << studentName << endl << endl;
 }
 
-//enum to strings
+// method that converts enums to strings
 string Student::convertEnumToString(DegreeProgram degree)
 {
 	switch (degree)
@@ -123,6 +123,7 @@ string Student::convertEnumToString(DegreeProgram degree)
 	}
 }
 
+// method that prints student information
 void Student::print()
 {
 	cout << studentID << "\t" <<
