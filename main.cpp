@@ -55,7 +55,7 @@ int main()
 
     // adding studentData to classRoster &
     // populating the classRosterArray with student objects
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < studentDataSize; i++)
     {
         classRoster.classRosterArray[i] = new Student(classRoster.add(
             parse(studentData[i])[0],
@@ -92,20 +92,29 @@ int main()
     }
     cout << endl;
     cout << "All the students in the array:" << endl;
+
    
     //--------------------------------------------------------------------------------//
     
     // prints all the students
     classRoster.printAll();
+    cout << endl;
     // prints invalid emails
     classRoster.printInvalidEmails();
     // prints average number of days for specified student
-    classRoster.printAverageDaysInCourse("A5");
+    classRoster.printAverageDaysInCourse("A4");
+    cout << endl;
     // prints degree by program
-    classRoster.printByDegreeProgram(NETWORK);
-    classRoster.remove("A3");
+    classRoster.printByDegreeProgram(SOFTWARE);
+    cout << endl;
+    // removes specified student from the list
+    classRoster.remove("A2");
+    
     //classRoster.printAll();
-    classRoster.remove("A3"); // student was not found!!!
+    cout << endl;
+
+
+    //classRoster.remove("A3"); 
 
     return 0;
 }

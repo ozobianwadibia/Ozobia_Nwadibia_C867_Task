@@ -2,7 +2,7 @@
 #include "roster.h"
 #include "student.h"
 
-
+// method that converts enum values to string
 string enumToDegreeString(DegreeProgram degreeProgram) {
     switch (degreeProgram) {
     case 0:
@@ -22,40 +22,7 @@ Roster::Roster() {}
 // destructor
 Roster::~Roster() {}
 
-//Student Roster::classRosterArray = new Student[5];
-
- 
-//DegreeProgram Roster:: stringsToEnum(const string& degStrings)
-//{
-//    if (degStrings == "SECURITY")
-//        return SECURITY;
-//    else if (degStrings == "NETWORK")
-//        return NETWORK;
-//    else if (degStrings == "SOFTWARE")
-//        return SOFTWARE;
-//}
-
-
-
-//string* Roster::parse(string row) {
-//    const int ROW_SIZE = 9;
-//    string* tempArray = new string[ROW_SIZE];
-//    int i = 0;
-//
-//    stringstream rowStream(row); //create string stream from the string
-//    while (rowStream.good())
-//    {
-//        string substr;
-//        getline(rowStream, substr, ','); //get first string delimited by comma
-//        tempArray[i] = substr;
-//        i++;
-//    }
-//
-//    return tempArray;
-//}
-
-
-
+// second constructor
  Student Roster::add(string ID, string fName, string lName, string email, int age, int days1, int days2, int days3, DegreeProgram deg)
  {
     int *daysIC = new int[3];
@@ -66,23 +33,56 @@ Roster::~Roster() {}
     return Student(ID, fName, lName, email, age, daysIC, deg);
 }
 
-
-
+ // method that remove a student based on ID
 void Roster::remove(string ID)
-{
+{  
+    // use new array to hold left overs!!!
+    Student* tempArray[4];
+    int j = 0;
+    bool present = false; // or false
+    int size = sizeof(classRosterArray) / sizeof(classRosterArray[0]);
    
+    for (int i = 0; i < size; i++) {
+        if (classRosterArray[i]->getStudentID() != ID) {
+            tempArray[j] = classRosterArray[i];
+            j++;
+
+            //// If x found in array 
+            //if (i < size)
+            //{
+            //    // reduce size of array and move all 
+            //    // elements on space ahead 
+            //    size = size - 1;
+            //    for (int j = i; j < size; j++)
+            //        classRosterArray[j] = classRosterArray[j + 1];
+            //        //classRosterArray[size - 1] = {};
+            //}
+        }
+    }
+    cout << "Student ID " << ID << " has been successfully deleted!!!" << endl;
+    
+    for (int i = 0; i < 4; i++) {
+        classRosterArray[i] = tempArray[i];
+    }
+
+    for (int i = 0; i < 4; i++) {
+        cout << classRosterArray[i]->getStudentID() << " ";
+    }
+           /* else  {
+                cout << "Student ID " << ID << ": is not available" << endl;
+            }*/
+             
 }
-
-
 
 // print method that displays all the students
 void Roster::printAll() {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < (sizeof(classRosterArray) / sizeof(classRosterArray[0])); i++) {
         classRosterArray[i]->print();
-    }
+    } 
 }
 
-
+// print method that displays average number 
+// of days in a course based on ID
 void Roster::printAverageDaysInCourse(string ID)
 {
     int average = 0;
@@ -94,31 +94,44 @@ void Roster::printAverageDaysInCourse(string ID)
         }
     }
     // TODO: fix the output
-    cout << "The average number of days for student "<< ID << " is: " << average << endl;
+    cout << "The average number of days in course for student "<< ID << " is: " << average << endl;
 }
 
 
-
-void Roster::printInvalidEmails() {
-    /*bool any = false;
+// prints a list of invalid student emails
+void Roster::printInvalidEmails() {  
+    cout << "The Invalid Student Emails are: " << endl;
     for (int i = 0; i < 5; i++) {
-        string badEmail = (Roster::classRosterArray[i]->getEmailAddress());
-        if ((badEmail.find(" ", 0) == string::npos) || (badEmail.find('@') == string::npos && badEmail.find('.') == string::npos)) {
 
-            any = true;
-            cout << badEmail << ": " << Roster::classRosterArray[i]->getEmailAddress() << std::endl;
+        size_t space = classRosterArray[i]->getEmailAddress().find(' ');
+        if (space != string::npos)
+        {
+            cout << classRosterArray[i]->getEmailAddress() << "\t\t" << "(has a space)" << endl;
+        }
+        size_t at = classRosterArray[i]->getEmailAddress().find('@');
+        if (at == string::npos) {
+            cout << classRosterArray[i]->getEmailAddress() << "\t\t" << "(missing the '@' symbol)" << endl;
+        }
+        size_t dot = classRosterArray[i]->getEmailAddress().find('.', at + 1);
+        if (dot == string::npos)
+        {
+            cout << classRosterArray[i]->getEmailAddress() << "\t\t" << "(missing the '.' symbol after @)" << endl;
         }
     }
-    if (!any) cout << "All emails are valid!" << endl;*/
+
+    cout << endl;
 }
 
+
+// prints students in a specified degree program
 void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
 {
-    cout << "Student(s) who are in this degree program : "<< enumToDegreeString(degreeProgram) << ", are printed below: " << endl;
+    cout << "Student(s) who are in this Degree Program : "<<"["<< enumToDegreeString(degreeProgram) <<"]"<< ", are printed below: " << endl;
     for (int i = 0; i < 5; i++) {
         if (classRosterArray[i]->getDegreeProgram() == degreeProgram) {
             classRosterArray[i]->print();
         }
     }
 }
+
 

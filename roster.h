@@ -7,11 +7,6 @@
 #include "degree.h"
 #include "student.h"
 
-#include <iostream>
-#include <string>
-#include <ios>
-#include <iomanip>
-
 using namespace std;
 
 
