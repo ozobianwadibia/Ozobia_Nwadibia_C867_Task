@@ -2,6 +2,16 @@
 #include "roster.h"
 #include "student.h"
 
+// method that sets width of underscores
+void Roster::setWidth(string comment)
+{
+    int width = comment.length();
+    for (int i = 0; i < width; i++)
+    {
+        cout << "-";
+    }
+}
+
 // method that converts enum values to string
 string enumToDegreeString(DegreeProgram degreeProgram) {
     switch (degreeProgram) {
@@ -18,9 +28,6 @@ string enumToDegreeString(DegreeProgram degreeProgram) {
 
 // constructor
 Roster::Roster() {}
-
-
-
 
 // second constructor
  Student Roster::add(string ID, string fName, string lName, string email, int age, int days1, int days2, int days3, DegreeProgram deg)
@@ -41,12 +48,12 @@ void Roster::remove(string ID)
     for (i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++) {
         string stuID = classRosterArray[i]->getStudentID();
         if (stuID == "") {
-            cout << "Student ID not found!!!" << endl;
+            cout << "Specified student ID not found!!!" << endl;
         }
         
         if (classRosterArray[i]->getStudentID() == ID) {
             classRosterArray[i]->setStudentID("");
-            cout << "Student has been deleted!!!" << endl;
+            cout << "The specified student has been deleted!!!" << endl;
         }
     }
 }
@@ -54,6 +61,10 @@ void Roster::remove(string ID)
 
 // print method that displays all the students
 void Roster::printAll() {
+    string w1 = "The students in the array: ";
+    cout << w1 << endl;
+    Roster::setWidth(w1);
+    cout << endl;
     for (int i = 0; i < (sizeof(classRosterArray) / sizeof(classRosterArray[0])); i++) {
         string stuID = classRosterArray[i]->getStudentID();
         if (stuID[0] == 'A') {
@@ -69,22 +80,24 @@ void Roster::printAverageDaysInCourse(string ID)
     int average = 0;
     int divisor = 3;
     
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < (sizeof(classRosterArray) / sizeof(classRosterArray[0])); i++) {
         if (classRosterArray[i]->getStudentID() == ID) {
             average += (classRosterArray[i]->getDaysInCourse()[0] + classRosterArray[i]->getDaysInCourse()[1] + classRosterArray[i]->getDaysInCourse()[2]) / divisor;
         }
     }
     
     cout << "The average number of days in course for student ["<< ID << "] is: " << average << endl;
-    cout << setfill('-') << setw(100) << "" << endl << endl;
+    cout << setfill('-') << setw(60) << "" << endl << endl;
 }
 
 
 // print method that displays invalid student emails
-void Roster::printInvalidEmails() {  
-    cout << "The Invalid Student Emails are: " << endl;
-    cout << setfill('-') << setw(100) << "" << endl;
-    for (int i = 0; i < 5; i++) {
+void Roster::printInvalidEmails() { 
+    string w1 = "The Invalid Student Emails are: ";
+    cout << w1 << endl;
+    Roster::setWidth(w1);
+    cout << endl;
+    for (int i = 0; i < (sizeof(classRosterArray) / sizeof(classRosterArray[0])); i++) {
 
         size_t spaceSymbol = classRosterArray[i]->getEmailAddress().find(' ');
         if (spaceSymbol != string::npos)
@@ -109,14 +122,17 @@ void Roster::printInvalidEmails() {
 // print method that displays student(s) in a specified degree program
 void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
 {
-    cout << "Student(s) who are in this Degree Program : "<<"["<< enumToDegreeString(degreeProgram) <<"]"<< ", are printed below: " << endl;
-    cout << setfill('-') << setw(100) << "" << endl << endl;
+    cout << "Student(s) who are in this Degree Program : "<<"["<< enumToDegreeString
+(degreeProgram) <<"]"<< ", are printed below: " << endl;
+    cout << setfill('-') << setw(75) << "" << endl;
     for (int i = 0; i < 5; i++) {
         if (classRosterArray[i]->getDegreeProgram() == degreeProgram) {
             classRosterArray[i]->print();
         }
     }
 }
+
+
 
 // destructor
 Roster::~Roster() {}

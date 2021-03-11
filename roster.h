@@ -33,6 +33,7 @@ public:
     void printAverageDaysInCourse(string);
     void printByDegreeProgram(DegreeProgram degreeProgram);
     void remove(string);
+    void setWidth(string);
 };
 
 #endif

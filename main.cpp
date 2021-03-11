@@ -91,36 +91,27 @@ int main()
        
     }
     cout << endl;
-    cout << "All the students in the array:" << endl;
-    cout << setfill('-') << setw(100) << "" << endl<< endl;
+    
 
-   
-    //--------------------------------------------------------------------------------//
+    //-------------------------------------------------------------//
     
     // prints all the students
     classRoster.printAll();
-    //cout << setfill('-') << setw(100) << "" << endl;
     cout << endl;
     // prints invalid emails
     classRoster.printInvalidEmails();
-    //cout << setfill('-') << setw(100) << "" << endl;
-    cout << endl;
     // prints average number of days for specified student
     classRoster.printAverageDaysInCourse("A4");
-    //cout << setfill('-') << setw(100) << "" << endl;
-    cout << endl;
     // prints degree by program
     classRoster.printByDegreeProgram(SECURITY);
-    //cout << setfill('-') << setw(100) << "" << endl;
     cout << endl;
     // removes specified student from the list
     classRoster.remove("A2");
     cout << endl;
-    cout << "The remaining students: " << endl;
-    cout << setfill('-') << setw(100) << "" << endl;
     classRoster.printAll();
     cout << endl;
     classRoster.remove("A2"); 
+   
 
     return 0;
 }
